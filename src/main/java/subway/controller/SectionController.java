@@ -64,8 +64,14 @@ public class SectionController {
 
     private void deleteSection() {
         try {
-            lineService.deleteLine(inputView.readDeleteLine());
-            outputView.printSuccessDeleteLine();
+            String line = inputView.readDeleteSectionLine();
+            lineService.validateLineName(line);
+            String station = inputView.readDeleteSectionStation();
+            if (!stationService.isExistStation(station)) {
+                throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_STATION.getErrorMessage());
+            }
+            lineService.deleteStationInLine(line, station);
+            outputView.printSuccessDeleteSection();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             deleteSection();

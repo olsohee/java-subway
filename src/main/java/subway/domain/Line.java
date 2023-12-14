@@ -23,4 +23,8 @@ public class Line {
     public void addStation(Station station, int order) {
         stations.add(order - 1, station);
     }
+
+    public void deleteStation(Station station) {
+        stations.remove(station);
+    }
 }

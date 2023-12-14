@@ -16,6 +16,8 @@ public class InputView {
     private static final String READ_LINE = "## 노선을 입력하세요.";
     private static final String READ_STATION = "## 역이름을 입력하세요.";
     private static final String READ_ORDER = "## 순서를 입력하세요.";
+    private static final String READ_DELETE_SECTION_LINE = "## 삭제할 구간의 노선을 입력하세요.";
+    private static final String READ_DELETE_SECTION_STATION = "## 삭제할 구간의 역을 입력하세요.";
     final Scanner scanner = new Scanner(System.in);
 
     private InputView() {
@@ -76,6 +78,16 @@ public class InputView {
 
     public String readOrder() {
         System.out.println(READ_ORDER);
+        return scanner.nextLine();
+    }
+
+    public String readDeleteSectionLine() {
+        System.out.println(READ_DELETE_SECTION_LINE);
+        return scanner.nextLine();
+    }
+
+    public String readDeleteSectionStation() {
+        System.out.println(READ_DELETE_SECTION_STATION);
         return scanner.nextLine();
     }
 }

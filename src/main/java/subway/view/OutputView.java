@@ -82,4 +82,9 @@ public class OutputView {
         System.out.println(InfoMessage.CREATE_SECTION.getMessage());
         System.out.println();
     }
+
+    public void printSuccessDeleteSection() {
+        System.out.println(InfoMessage.DELETE_SECTION.getMessage());
+        System.out.println();
+    }
 }

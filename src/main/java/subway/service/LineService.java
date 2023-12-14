@@ -56,4 +56,10 @@ public class LineService {
         Station station = StationRepository.findByName(stationName);
         line.addStation(station, order);
     }
+
+    public void deleteStationInLine(String lineName, String stationName) {
+        Line line = LineRepository.findByName(lineName);
+        Station station = StationRepository.findByName(stationName);
+        line.deleteStation(station);
+    }
 }
