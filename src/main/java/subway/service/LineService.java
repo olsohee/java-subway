@@ -2,6 +2,7 @@ package subway.service;
 
 import subway.domain.Line;
 import subway.domain.Station;
+import subway.dto.LineAndStationDto;
 import subway.dto.LineDto;
 import subway.message.ErrorMessage;
 import subway.repository.LineRepository;
@@ -61,5 +62,18 @@ public class LineService {
         Line line = LineRepository.findByName(lineName);
         Station station = StationRepository.findByName(stationName);
         line.deleteStation(station);
+    }
+
+    public List<LineAndStationDto> getLineAndStationDtos() {
+        List<LineAndStationDto> lineAndStationDto = new ArrayList<>();
+
+        LineRepository.findAll();
+        for (Line line : LineRepository.findAll()) {
+            List<String> stationNames = line.getStations().stream()
+                    .map(station -> station.getName())
+                    .collect(Collectors.toList());
+            lineAndStationDto.add(new LineAndStationDto(line.getName(), stationNames));
+        }
+        return lineAndStationDto;
     }
 }

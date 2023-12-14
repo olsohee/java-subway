@@ -24,7 +24,8 @@ public enum OutputMessage {
             "2. 구간 삭제\n" +
             "B. 돌아가기\n"),
     STATIONS("## 역 목록"),
-    LINES("## 노선 목록")
+    LINES("## 노선 목록"),
+    MAP("## 지하철 노선도")
     ;
 
     private final String message;

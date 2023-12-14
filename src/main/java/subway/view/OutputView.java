@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.dto.LineAndStationDto;
 import subway.dto.LineDto;
 import subway.dto.StationDto;
 import subway.message.InfoMessage;
@@ -85,6 +86,21 @@ public class OutputView {
 
     public void printSuccessDeleteSection() {
         System.out.println(InfoMessage.DELETE_SECTION.getMessage());
+        System.out.println();
+    }
+
+    public void printMap(List<LineAndStationDto> lineAndStationDtos) {
+        System.out.println(OutputMessage.MAP.getMessage());
+
+        lineAndStationDtos.stream()
+                .forEach(dto -> printDetailMap(dto));
+    }
+
+    private void printDetailMap(LineAndStationDto dto) {
+        System.out.println(String.format(InfoMessage.STATION_AND_LINE.getMessage(), dto.getLineName()));
+        System.out.println(String.format(InfoMessage.STATION_AND_LINE.getMessage(), "---"));
+        dto.getStationNames().stream()
+                .forEach(stationName -> System.out.println(String.format(InfoMessage.STATION_AND_LINE.getMessage(), stationName)));
         System.out.println();
     }
 }

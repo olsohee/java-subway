@@ -35,7 +35,7 @@ public class MainController {
                 new SectionController().run();
             }
             if (command == Command.MAP) {
-
+                new MapController().run();
             }
             if (command == Command.QUIT) {
 
