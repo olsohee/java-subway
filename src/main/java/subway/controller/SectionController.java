@@ -12,8 +12,8 @@ public class SectionController {
 
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
-    private final StationService stationService = new StationService();
-    private final LineService lineService = new LineService();
+    private final StationService stationService = StationService.getInstance();
+    private final LineService lineService = LineService.getInstance();
     private final InputConvertor inputConvertor = InputConvertor.getInstance();
     private DetailCommand command;
 
@@ -48,7 +48,7 @@ public class SectionController {
         try {
             String lineName = inputView.readLine();
             String stationName = inputView.readStation();
-            int order = inputConvertor.convertToInt(inputView.readOrder());
+            int order = inputConvertor.convertStringToInt(inputView.readOrder());
 
             lineService.addStationInLine(stationName, lineName, order);
             outputView.printSuccessCreateSection();

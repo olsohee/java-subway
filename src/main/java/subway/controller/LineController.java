@@ -10,8 +10,7 @@ public class LineController {
 
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
-    private final LineService lineService = new LineService();
-    private final StationService stationService = new StationService();
+    private final LineService lineService = LineService.getInstance();
     private DetailCommand command;
 
     public void run() {

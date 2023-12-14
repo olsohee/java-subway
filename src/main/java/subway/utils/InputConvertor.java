@@ -4,18 +4,16 @@ import subway.message.ErrorMessage;
 
 public class InputConvertor {
 
+    private static InputConvertor inputConvertor = new InputConvertor();
+
     private InputConvertor() {
     }
 
-    private static class InputConvertorHolder {
-        private static InputConvertor inputConvertor = new InputConvertor();
-    }
-
     public static InputConvertor getInstance() {
-        return InputConvertorHolder.inputConvertor;
+        return inputConvertor;
     }
 
-    public int convertToInt(String input) {
+    public int convertStringToInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

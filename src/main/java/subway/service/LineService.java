@@ -7,6 +7,7 @@ import subway.dto.LineDto;
 import subway.message.ErrorMessage;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
+import subway.view.InputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,16 @@ import java.util.stream.Collectors;
 
 public class LineService {
 
-    private final StationService stationService = new StationService();
+    private static LineService lineService = new LineService();
+
+    private LineService() {
+    }
+
+    public static LineService getInstance() {
+        return lineService;
+    }
+
+    private final StationService stationService = StationService.getInstance();
 
     public void init() {
         List<Station> stations1 = new ArrayList<>();

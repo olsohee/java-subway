@@ -10,15 +10,13 @@ public class InputView {
 
     final Scanner scanner = new Scanner(System.in);
 
+    private static InputView inputView = new InputView();
+
     private InputView() {
     }
 
-    private static class InputViewHolder {
-        private static InputView inputView = new InputView();
-    }
-
     public static InputView getInstance() {
-        return InputViewHolder.inputView;
+        return inputView;
     }
 
     public String readCommand() {

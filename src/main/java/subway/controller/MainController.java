@@ -3,22 +3,18 @@ package subway.controller;
 import subway.domain.FuctionCommand;
 import subway.service.LineService;
 import subway.service.StationService;
-import subway.utils.InputConvertor;
 import subway.view.InputView;
 import subway.view.OutputView;
 
 public class MainController {
-    private final InputView inputView;
-    private final InputConvertor inputConvertor;
-    private final OutputView outputView;
-    private final StationService stationService = new StationService();
-    private final LineService lineService = new LineService();
+
+    private final InputView inputView = InputView.getInstance();
+    private final OutputView outputView = OutputView.getInstance();
+    private final StationService stationService = StationService.getInstance();
+    private final LineService lineService = LineService.getInstance();
     private FuctionCommand fuctionCommand;
 
-    public MainController(InputView inputView, InputConvertor inputConvertor, OutputView outputView) {
-        this.inputView = inputView;
-        this.inputConvertor = inputConvertor;
-        this.outputView = outputView;
+    public MainController() {
         stationService.init();
         lineService.init();
     }

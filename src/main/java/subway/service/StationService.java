@@ -11,6 +11,15 @@ import java.util.stream.Collectors;
 
 public class StationService {
 
+    private static StationService stationService = new StationService();
+
+    private StationService() {
+    }
+
+    public static StationService getInstance() {
+        return stationService;
+    }
+
     public void init() {
         StationRepository.addStation(new Station("교대역"));
         StationRepository.addStation(new Station("강남역"));

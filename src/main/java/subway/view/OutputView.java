@@ -10,15 +10,13 @@ import java.util.List;
 
 public class OutputView {
 
+    private static OutputView outputView = new OutputView();
+
     private OutputView() {
     }
 
-    private static class OutputViewHolder {
-        private static OutputView outputView = new OutputView();
-    }
-
     public static OutputView getInstance() {
-        return OutputViewHolder.outputView;
+        return outputView;
     }
 
     public void printErrorMessage(String message) {
