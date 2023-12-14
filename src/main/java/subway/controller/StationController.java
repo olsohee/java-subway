@@ -24,9 +24,6 @@ public class StationController {
         if (command == DetailCommand.READ) {
             readStations();
         }
-        if (command == DetailCommand.BACK) {
-
-        }
     }
 
     private void readCommand() {

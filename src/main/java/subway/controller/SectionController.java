@@ -8,29 +8,31 @@ import subway.utils.InputConvertor;
 import subway.view.InputView;
 import subway.view.OutputView;
 
-public class LineController {
+public class SectionController {
 
     private final InputView inputView = InputView.getInstance();
     private final OutputView outputView = OutputView.getInstance();
-    private final LineService lineService = new LineService();
     private final StationService stationService = new StationService();
+    private final LineService lineService = new LineService();
     private final InputConvertor inputConvertor = InputConvertor.getInstance();
     private DetailCommand command;
 
     public void run() {
-        outputView.printLineFunction();
+        outputView.printSectionFunction();
         readCommand();
         if (command == DetailCommand.CREATE) {
-            createLine();
+            createSection();
         }
         if (command == DetailCommand.DELETE) {
-            deleteLine();
+            deleteSection();
         }
         if (command == DetailCommand.READ) {
-            readLines();
-        }
-        if (command == DetailCommand.BACK) {
-
+            try {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_COMMAND.getErrorMessage());
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                run();
+            }
         }
     }
 
@@ -42,34 +44,31 @@ public class LineController {
         }
     }
 
-    private void createLine() {
+    private void createSection() {
         try {
-            String lineName = inputView.readCreateLine();
+            String lineName = inputView.readLine();
             lineService.validateLineName(lineName);
-            String upStation = inputView.readUpInLine();
-            String downStation = inputView.readDownInLine();
-            if (!stationService.isExistStation(upStation) || !stationService.isExistStation(downStation)) {
+            String stationName = inputView.readStation();
+            if (!stationService.isExistStation(stationName)) {
                 throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_STATION.getErrorMessage());
             }
-            lineService.createLine(lineName, upStation, downStation);
-            outputView.printSuccessCreateLine();
+            int order = inputConvertor.convertToInt(inputView.readOrder());
+
+            lineService.addStationInLine(stationName, lineName, order);
+            outputView.printSuccessCreateSection();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            createLine();
+            createSection();
         }
     }
 
-    private void deleteLine() {
+    private void deleteSection() {
         try {
             lineService.deleteLine(inputView.readDeleteLine());
             outputView.printSuccessDeleteLine();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
-            deleteLine();
+            deleteSection();
         }
-    }
-
-    private void readLines() {
-        outputView.printLines(lineService.getLineDtos());
     }
 }

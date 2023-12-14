@@ -13,13 +13,19 @@ import java.util.stream.Collectors;
 
 public class LineService {
 
-    public void validateLineName(String lineName) {
+    public void validateCreateLineName(String lineName) {
         if (lineName.length() < 2) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LINE.getErrorMessage());
         }
 
         if (LineRepository.isExistByName(lineName)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATES_LINE.getErrorMessage());
+        }
+    }
+
+    public void validateLineName(String lineName) {
+        if (!LineRepository.isExistByName(lineName)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_LINE.getErrorMessage());
         }
     }
 
@@ -43,5 +49,11 @@ public class LineService {
             throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_LINE.getErrorMessage());
         }
         LineRepository.deleteLineByName(lineName);
+    }
+
+    public void addStationInLine(String stationName, String lineName, int order) {
+        Line line = LineRepository.findByName(lineName);
+        Station station = StationRepository.findByName(stationName);
+        line.addStation(station, order);
     }
 }

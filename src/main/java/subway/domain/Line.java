@@ -20,4 +20,7 @@ public class Line {
         return stations;
     }
 
+    public void addStation(Station station, int order) {
+        stations.add(order - 1, station);
+    }
 }

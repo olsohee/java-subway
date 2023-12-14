@@ -32,7 +32,7 @@ public class MainController {
                 new LineController().run();
             }
             if (command == Command.SECTION) {
-
+                new SectionController().run();
             }
             if (command == Command.MAP) {
 
