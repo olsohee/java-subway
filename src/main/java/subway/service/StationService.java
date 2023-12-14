@@ -65,6 +65,9 @@ public class StationService {
         if (!StationRepository.isExistByName(stationName)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_STATION.getErrorMessage());
         }
+        if (LineRepository.isContainInLine(stationName)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_DELETE_STATION.getErrorMessage());
+        }
         StationRepository.deleteStation(stationName);
     }
 }

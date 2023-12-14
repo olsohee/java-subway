@@ -21,4 +21,12 @@ public class LineRepository {
     public static boolean deleteLineByName(String name) {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
+
+    public static boolean isContainInLine(String stationName) {
+        return lines.stream()
+                .anyMatch(line ->
+                    line.getStations().stream()
+                            .anyMatch(station -> station.getName().equals(stationName))
+                );
+    }
 }
