@@ -59,8 +59,8 @@ public class LineController {
 
     private void deleteLine() {
         try {
-            stationService.deleteStation(inputView.readDeleteStation());
-            outputView.printSuccessDeleteStation();
+            lineService.deleteLine(inputView.readDeleteLine());
+            outputView.printSuccessDeleteLine();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             deleteLine();

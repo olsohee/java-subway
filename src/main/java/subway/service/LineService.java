@@ -37,4 +37,11 @@ public class LineService {
                 .map(line -> new LineDto(line.getName()))
                 .collect(Collectors.toList());
     }
+
+    public void deleteLine(String lineName) {
+        if (!LineRepository.isExistByName(lineName)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_LINE.getErrorMessage());
+        }
+        LineRepository.deleteLineByName(lineName);
+    }
 }

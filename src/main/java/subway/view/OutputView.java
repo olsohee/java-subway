@@ -67,4 +67,9 @@ public class OutputView {
                 .forEach(dto -> System.out.println(String.format(InfoMessage.STATION_AND_LINE.getMessage(), dto.getLineName())));
         System.out.println();
     }
+
+    public void printSuccessDeleteLine() {
+        System.out.println(InfoMessage.DELETE_LINE.getMessage());
+        System.out.println();
+    }
 }
