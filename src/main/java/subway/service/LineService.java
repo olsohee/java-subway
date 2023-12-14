@@ -14,35 +14,52 @@ import java.util.stream.Collectors;
 
 public class LineService {
 
-    public void validateCreateLineName(String lineName) {
-        if (lineName.length() < 2) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LINE.getErrorMessage());
-        }
+    private final StationService stationService = new StationService();
 
-        if (LineRepository.isExistByName(lineName)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATES_LINE.getErrorMessage());
-        }
+    public void init() {
+        List<Station> stations1 = new ArrayList<>();
+        stations1.add(new Station("교대역"));
+        stations1.add(new Station("강남역"));
+        stations1.add(new Station("역삼역"));
+
+        List<Station> stations2 = new ArrayList<>();
+        stations2.add(new Station("교대역"));
+        stations2.add(new Station("남부터미널"));
+        stations2.add(new Station("양재역"));
+        stations2.add(new Station("매봉역"));
+
+        List<Station> stations3 = new ArrayList<>();
+        stations3.add(new Station("강남역"));
+        stations3.add(new Station("양재역"));
+        stations3.add(new Station("양재시민의숲역"));
+
+        LineRepository.addLine(new Line("2호선", stations1));
+        LineRepository.addLine(new Line("3호선", stations2));
+        LineRepository.addLine(new Line("신분당선", stations3));
     }
 
-    public void validateLineName(String lineName) {
+    public void validateIsExistByLineName(String lineName) {
         if (!LineRepository.isExistByName(lineName)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_LINE.getErrorMessage());
         }
     }
 
     public void createLine(String lineName, String upStation, String downStation) {
-        Station up = StationRepository.findByName(upStation);
-        Station down = StationRepository.findByName(downStation);
+        validateCreateLineName(lineName);
+
         List<Station> stations = new ArrayList<>();
-        stations.add(up);
-        stations.add(down);
+        stations.add(StationRepository.findByName(upStation));
+        stations.add(StationRepository.findByName(downStation));
         LineRepository.addLine(new Line(lineName, stations));
     }
 
-    public List<LineDto> getLineDtos() {
-        return LineRepository.findAll().stream()
-                .map(line -> new LineDto(line.getName()))
-                .collect(Collectors.toList());
+    public void validateCreateLineName(String lineName) {
+        if (lineName.length() < 2) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LINE.getErrorMessage());
+        }
+        if (LineRepository.isExistByName(lineName)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATES_LINE.getErrorMessage());
+        }
     }
 
     public void deleteLine(String lineName) {
@@ -65,6 +82,12 @@ public class LineService {
             throw new IllegalArgumentException(ErrorMessage.NOT_DELETE_SECTION.getErrorMessage());
         }
         line.deleteStation(station);
+    }
+
+    public List<LineDto> getLineDtos() {
+        return LineRepository.findAll().stream()
+                .map(line -> new LineDto(line.getName()))
+                .collect(Collectors.toList());
     }
 
     public List<LineAndStationDto> getLineAndStationDtos() {

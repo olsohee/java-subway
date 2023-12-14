@@ -8,8 +8,7 @@ import subway.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        MainController mainController = new MainController(InputView.getInstance(), InputConvertor.getInstance(),
-                OutputView.getInstance(), new StationService());
+        MainController mainController = new MainController(InputView.getInstance(), InputConvertor.getInstance(), OutputView.getInstance());
         mainController.run();
     }
 }

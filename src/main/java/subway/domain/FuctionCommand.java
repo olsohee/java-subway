@@ -4,7 +4,7 @@ import subway.message.ErrorMessage;
 
 import java.util.Arrays;
 
-public enum Command {
+public enum FuctionCommand {
 
     STATION("1"),
     LINE("2"),
@@ -15,13 +15,13 @@ public enum Command {
 
     private final String command;
 
-    Command(String command) {
+    FuctionCommand(String command) {
         this.command = command;
     }
 
-    public static Command findCommand(String input) {
-        return Arrays.stream(Command.values())
-                .filter(command -> command.getCommand().equals(input))
+    public static FuctionCommand findCommand(String input) {
+        return Arrays.stream(FuctionCommand.values())
+                .filter(fuctionCommand -> fuctionCommand.getCommand().equals(input))
                 .findAny()
                 .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.INVALID_COMMAND.getErrorMessage()));
     }

@@ -1,23 +1,13 @@
 package subway.view;
 
-import subway.Application;
+import subway.message.InputMessage;
 
 import java.util.Scanner;
 
+import static subway.message.InputMessage.*;
+
 public class InputView {
 
-    private static final String READ_COMMAND = "## 원하는 기능을 선택하세요.";
-    private static final String READ_DELETE_STATION = "## 삭제할 역 이름을 입력하세요.";
-    private static final String READ_CREATE_STATION = "## 등록할 역 이름을 입력하세요.";
-    private static final String READ_CREATE_LINE = "## 등록할 노선 이름을 입력하세요.";
-    private static final String READ_UP_IN_LINE = "## 등록할 노선의 상행 종점역 이름을 입력하세요.";
-    private static final String READ_DOWN_IN_LINE = "## 등록할 노선의 하행 종점역 이름을 입력하세요.";
-    private static final String READ_DELETE_LINE = "## 삭제할 노선 이름을 입력하세요.";
-    private static final String READ_LINE = "## 노선을 입력하세요.";
-    private static final String READ_STATION = "## 역이름을 입력하세요.";
-    private static final String READ_ORDER = "## 순서를 입력하세요.";
-    private static final String READ_DELETE_SECTION_LINE = "## 삭제할 구간의 노선을 입력하세요.";
-    private static final String READ_DELETE_SECTION_STATION = "## 삭제할 구간의 역을 입력하세요.";
     final Scanner scanner = new Scanner(System.in);
 
     private InputView() {
@@ -32,62 +22,62 @@ public class InputView {
     }
 
     public String readCommand() {
-        System.out.println(READ_COMMAND);
+        System.out.println(InputMessage.COMMAND.getMessage());
         return scanner.nextLine();
     }
 
     public String readDeleteStation() {
-        System.out.println(READ_DELETE_STATION);
+        System.out.println(DELETE_STATION);
         return scanner.nextLine();
     }
 
     public String readCreateStation() {
-        System.out.println(READ_CREATE_STATION);
+        System.out.println(CREATE_STATION);
         return scanner.nextLine();
     }
 
     public String readCreateLine() {
-        System.out.println(READ_CREATE_LINE);
+        System.out.println(CREATE_LINE);
         return scanner.nextLine();
     }
 
     public String readUpInLine() {
-        System.out.println(READ_UP_IN_LINE);
+        System.out.println(UP_IN_LINE);
         return scanner.nextLine();
     }
 
     public String readDownInLine() {
-        System.out.println(READ_DOWN_IN_LINE);
+        System.out.println(DOWN_IN_LINE);
         return scanner.nextLine();
     }
 
     public String readDeleteLine() {
-        System.out.println(READ_DELETE_LINE);
+        System.out.println(DELETE_LINE);
         return scanner.nextLine();
     }
 
     public String readLine() {
-        System.out.println(READ_LINE);
+        System.out.println(LINE);
         return scanner.nextLine();
     }
 
     public String readStation() {
-        System.out.println(READ_STATION);
+        System.out.println(STATION);
         return scanner.nextLine();
     }
 
     public String readOrder() {
-        System.out.println(READ_ORDER);
+        System.out.println(ORDER);
         return scanner.nextLine();
     }
 
     public String readDeleteSectionLine() {
-        System.out.println(READ_DELETE_SECTION_LINE);
+        System.out.println(DELETE_SECTION_LINE);
         return scanner.nextLine();
     }
 
     public String readDeleteSectionStation() {
-        System.out.println(READ_DELETE_SECTION_STATION);
+        System.out.println(DELETE_SECTION_STATION);
         return scanner.nextLine();
     }
 }

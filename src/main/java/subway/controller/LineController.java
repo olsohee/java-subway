@@ -1,7 +1,6 @@
 package subway.controller;
 
 import subway.domain.DetailCommand;
-import subway.message.ErrorMessage;
 import subway.service.LineService;
 import subway.service.StationService;
 import subway.view.InputView;
@@ -27,9 +26,6 @@ public class LineController {
         if (command == DetailCommand.READ) {
             readLines();
         }
-        if (command == DetailCommand.BACK) {
-
-        }
     }
 
     private void readCommand() {
@@ -43,12 +39,8 @@ public class LineController {
     private void createLine() {
         try {
             String lineName = inputView.readCreateLine();
-            lineService.validateLineName(lineName);
             String upStation = inputView.readUpInLine();
             String downStation = inputView.readDownInLine();
-            if (!stationService.isExistStation(upStation) || !stationService.isExistStation(downStation)) {
-                throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_STATION.getErrorMessage());
-            }
             lineService.createLine(lineName, upStation, downStation);
             outputView.printSuccessCreateLine();
         } catch (IllegalArgumentException e) {

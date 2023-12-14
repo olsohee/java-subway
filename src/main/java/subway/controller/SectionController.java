@@ -47,11 +47,7 @@ public class SectionController {
     private void createSection() {
         try {
             String lineName = inputView.readLine();
-            lineService.validateLineName(lineName);
             String stationName = inputView.readStation();
-            if (!stationService.isExistStation(stationName)) {
-                throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_STATION.getErrorMessage());
-            }
             int order = inputConvertor.convertToInt(inputView.readOrder());
 
             lineService.addStationInLine(stationName, lineName, order);
@@ -65,18 +61,8 @@ public class SectionController {
     private void deleteSection() {
         try {
             String line = inputView.readDeleteSectionLine();
-            lineService.validateLineName(line);
             String station = inputView.readDeleteSectionStation();
-            if (!stationService.isExistStation(station)) {
-                throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_STATION.getErrorMessage());
-            }
-            try {
-                lineService.deleteStationInLine(line, station);
-            }catch (IllegalArgumentException e) {
-                outputView.printErrorMessage(e.getMessage());
-                deleteSection();
-                return;
-            }
+            lineService.deleteStationInLine(line, station);
             outputView.printSuccessDeleteSection();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());

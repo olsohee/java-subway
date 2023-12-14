@@ -28,7 +28,7 @@ public class StationRepository {
     }
 
     public static List<Station> findAll() {
-        return stations;
+        return stations();
     }
 
     public static boolean isExistByName(String stationName) {

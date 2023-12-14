@@ -1,6 +1,7 @@
 package subway.controller;
 
-import subway.domain.Command;
+import subway.domain.FuctionCommand;
+import subway.service.LineService;
 import subway.service.StationService;
 import subway.utils.InputConvertor;
 import subway.view.InputView;
@@ -10,34 +11,35 @@ public class MainController {
     private final InputView inputView;
     private final InputConvertor inputConvertor;
     private final OutputView outputView;
-    private final StationService stationService;
-    private Command command;
+    private final StationService stationService = new StationService();
+    private final LineService lineService = new LineService();
+    private FuctionCommand fuctionCommand;
 
-    public MainController(InputView inputView, InputConvertor inputConvertor, OutputView outputView, StationService stationService) {
+    public MainController(InputView inputView, InputConvertor inputConvertor, OutputView outputView) {
         this.inputView = inputView;
         this.inputConvertor = inputConvertor;
         this.outputView = outputView;
-        this.stationService = stationService;
         stationService.init();
+        lineService.init();
     }
 
     public void run() {
         while (true) {
             outputView.printMain();
             readCommand();
-            if (command == Command.STATION) {
+            if (fuctionCommand == FuctionCommand.STATION) {
                 new StationController().run();
             }
-            if (command == Command.LINE) {
+            if (fuctionCommand == FuctionCommand.LINE) {
                 new LineController().run();
             }
-            if (command == Command.SECTION) {
+            if (fuctionCommand == FuctionCommand.SECTION) {
                 new SectionController().run();
             }
-            if (command == Command.MAP) {
+            if (fuctionCommand == FuctionCommand.MAP) {
                 new MapController().run();
             }
-            if (command == Command.QUIT) {
+            if (fuctionCommand == FuctionCommand.QUIT) {
                 break;
             }
         }
@@ -45,7 +47,7 @@ public class MainController {
 
     private void readCommand() {
         try {
-            command = Command.findCommand(inputView.readCommand());
+            fuctionCommand = FuctionCommand.findCommand(inputView.readCommand());
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             readCommand();

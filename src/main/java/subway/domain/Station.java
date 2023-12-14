@@ -5,6 +5,7 @@ import subway.message.ErrorMessage;
 import java.util.Objects;
 
 public class Station {
+
     private String name;
 
     public Station(String name) {
