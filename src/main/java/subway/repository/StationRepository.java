@@ -1,4 +1,7 @@
-package subway.domain;
+package subway.repository;
+
+import subway.domain.Station;
+import subway.message.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class StationRepository {
+
     private static final List<Station> stations = new ArrayList<>();
 
     public static List<Station> stations() {
@@ -13,6 +17,9 @@ public class StationRepository {
     }
 
     public static void addStation(Station station) {
+        if (stations.contains(station)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATES_STATION.getErrorMessage());
+        }
         stations.add(station);
     }
 
