@@ -34,4 +34,8 @@ public class LineRepository {
         return lines.stream()
                 .anyMatch(line -> line.getName().equals(lineName));
     }
+
+    public static List<Line> findAll() {
+        return lines();
+    }
 }

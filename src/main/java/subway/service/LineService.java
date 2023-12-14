@@ -2,12 +2,14 @@ package subway.service;
 
 import subway.domain.Line;
 import subway.domain.Station;
+import subway.dto.LineDto;
 import subway.message.ErrorMessage;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LineService {
 
@@ -28,5 +30,11 @@ public class LineService {
         stations.add(up);
         stations.add(down);
         LineRepository.addLine(new Line(lineName, stations));
+    }
+
+    public List<LineDto> getLineDtos() {
+        return LineRepository.findAll().stream()
+                .map(line -> new LineDto(line.getName()))
+                .collect(Collectors.toList());
     }
 }

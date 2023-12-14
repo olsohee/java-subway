@@ -68,6 +68,6 @@ public class LineController {
     }
 
     private void readLines() {
-        outputView.printStations(stationService.getStationDtos());
+        outputView.printLines(lineService.getLineDtos());
     }
 }

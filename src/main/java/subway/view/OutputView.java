@@ -1,5 +1,6 @@
 package subway.view;
 
+import subway.dto.LineDto;
 import subway.dto.StationDto;
 import subway.message.InfoMessage;
 import subway.message.OutputMessage;
@@ -46,7 +47,7 @@ public class OutputView {
     public void printStations(List<StationDto> stationDtos) {
         System.out.println(OutputMessage.STATIONS.getMessage());
         stationDtos.stream()
-                .forEach(dto -> System.out.println(String.format(InfoMessage.STATION.getMessage(), dto.getStationName())));
+                .forEach(dto -> System.out.println(String.format(InfoMessage.STATION_AND_LINE.getMessage(), dto.getStationName())));
         System.out.println();
     }
 
@@ -57,6 +58,13 @@ public class OutputView {
 
     public void printSuccessCreateLine() {
         System.out.println(InfoMessage.CREATE_LINE.getMessage());
+        System.out.println();
+    }
+
+    public void printLines(List<LineDto> lineDtos) {
+        System.out.println(OutputMessage.LINES.getMessage());
+        lineDtos.stream()
+                .forEach(dto -> System.out.println(String.format(InfoMessage.STATION_AND_LINE.getMessage(), dto.getLineName())));
         System.out.println();
     }
 }

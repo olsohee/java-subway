@@ -18,7 +18,8 @@ public enum OutputMessage {
             "2. 노선 삭제\n" +
             "3. 노선 조회\n" +
             "B. 돌아가기"),
-    STATIONS("## 역 목록")
+    STATIONS("## 역 목록"),
+    LINES("## 노선 목록")
     ;
 
     private final String message;
