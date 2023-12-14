@@ -35,4 +35,11 @@ public class StationRepository {
         return stations.stream()
                 .anyMatch(station -> station.getName().equals(stationName));
     }
+
+    public static Station findByName(String stationName) {
+        return stations.stream()
+                .filter(station -> station.getName().equals(stationName))
+                .findAny()
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_FOUND_STATION.getErrorMessage()));
+    }
 }

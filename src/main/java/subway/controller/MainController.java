@@ -29,7 +29,7 @@ public class MainController {
                 new StationController().run();
             }
             if (command == Command.LINE) {
-
+                new LineController().run();
             }
             if (command == Command.SECTION) {
 

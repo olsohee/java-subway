@@ -29,4 +29,9 @@ public class LineRepository {
                             .anyMatch(station -> station.getName().equals(stationName))
                 );
     }
+
+    public static boolean isExistByName(String lineName) {
+        return lines.stream()
+                .anyMatch(line -> line.getName().equals(lineName));
+    }
 }

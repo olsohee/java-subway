@@ -70,4 +70,8 @@ public class StationService {
         }
         StationRepository.deleteStation(stationName);
     }
+
+    public boolean isExistStation(String stationName) {
+        return StationRepository.isExistByName(stationName);
+    }
 }

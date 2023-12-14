@@ -33,6 +33,11 @@ public class OutputView {
         System.out.println();
     }
 
+    public void printLineFunction() {
+        System.out.println(OutputMessage.LINE_FUNCTION.getMessage());
+        System.out.println();
+    }
+
     public void printSuccessCreateStation() {
         System.out.println(InfoMessage.CREATE_STATION.getMessage());
         System.out.println();
@@ -47,6 +52,11 @@ public class OutputView {
 
     public void printSuccessDeleteStation() {
         System.out.println(InfoMessage.DELETE_STATION.getMessage());
+        System.out.println();
+    }
+
+    public void printSuccessCreateLine() {
+        System.out.println(InfoMessage.CREATE_LINE.getMessage());
         System.out.println();
     }
 }

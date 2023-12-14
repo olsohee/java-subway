@@ -4,6 +4,7 @@ public enum InfoMessage {
 
     CREATE_STATION("지하철 역이 등록되었습니다."),
     DELETE_STATION("지하철 역이 삭제되었습니다."),
+    CREATE_LINE("지하철 노선이 등록되었습니다."),
     STATION(" %s")
     ;
 
