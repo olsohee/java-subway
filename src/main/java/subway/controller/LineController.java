@@ -4,7 +4,6 @@ import subway.domain.DetailCommand;
 import subway.message.ErrorMessage;
 import subway.service.LineService;
 import subway.service.StationService;
-import subway.utils.InputConvertor;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -14,7 +13,6 @@ public class LineController {
     private final OutputView outputView = OutputView.getInstance();
     private final LineService lineService = new LineService();
     private final StationService stationService = new StationService();
-    private final InputConvertor inputConvertor = InputConvertor.getInstance();
     private DetailCommand command;
 
     public void run() {

@@ -38,7 +38,7 @@ public class MainController {
                 new MapController().run();
             }
             if (command == Command.QUIT) {
-
+                break;
             }
         }
     }
