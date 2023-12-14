@@ -70,7 +70,13 @@ public class SectionController {
             if (!stationService.isExistStation(station)) {
                 throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_STATION.getErrorMessage());
             }
-            lineService.deleteStationInLine(line, station);
+            try {
+                lineService.deleteStationInLine(line, station);
+            }catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+                deleteSection();
+                return;
+            }
             outputView.printSuccessDeleteSection();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());

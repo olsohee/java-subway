@@ -27,4 +27,8 @@ public class Line {
     public void deleteStation(Station station) {
         stations.remove(station);
     }
+
+    public boolean canDeleteStation() {
+        return stations.size() > 2;
+    }
 }

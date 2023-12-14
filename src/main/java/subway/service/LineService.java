@@ -61,6 +61,9 @@ public class LineService {
     public void deleteStationInLine(String lineName, String stationName) {
         Line line = LineRepository.findByName(lineName);
         Station station = StationRepository.findByName(stationName);
+        if (!line.canDeleteStation()) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_DELETE_SECTION.getErrorMessage());
+        }
         line.deleteStation(station);
     }
 
