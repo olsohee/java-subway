@@ -3,6 +3,7 @@ package subway.service;
 import subway.domain.Line;
 import subway.domain.Station;
 import subway.dto.StationDto;
+import subway.message.ErrorMessage;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 
@@ -58,5 +59,12 @@ public class StationService {
         return StationRepository.findAll().stream()
                 .map(station -> new StationDto(station.getName()))
                 .collect(Collectors.toList());
+    }
+
+    public void deleteStation(String stationName) {
+        if (!StationRepository.isExistByName(stationName)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_STATION.getErrorMessage());
+        }
+        StationRepository.deleteStation(stationName);
     }
 }

@@ -24,10 +24,15 @@ public class StationRepository {
     }
 
     public static boolean deleteStation(String name) {
-        return stations.removeIf(station -> Objects.equals(station.getName(), name));
+        return stations.removeIf(station -> station.getName().equals(name));
     }
 
     public static List<Station> findAll() {
         return stations;
+    }
+
+    public static boolean isExistByName(String stationName) {
+        return stations.stream()
+                .anyMatch(station -> station.getName().equals(stationName));
     }
 }

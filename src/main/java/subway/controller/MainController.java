@@ -22,22 +22,24 @@ public class MainController {
     }
 
     public void run() {
-        outputView.printMain();
-        readCommand();
-        if (command == Command.STATION) {
-            new StationController().run();
-        }
-        if (command == Command.LINE) {
+        while (true) {
+            outputView.printMain();
+            readCommand();
+            if (command == Command.STATION) {
+                new StationController().run();
+            }
+            if (command == Command.LINE) {
 
-        }
-        if (command == Command.SECTION) {
+            }
+            if (command == Command.SECTION) {
 
-        }
-        if (command == Command.MAP) {
+            }
+            if (command == Command.MAP) {
 
-        }
-        if (command == Command.QUIT) {
+            }
+            if (command == Command.QUIT) {
 
+            }
         }
     }
 

@@ -38,10 +38,15 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printStaions(List<StationDto> stationDtos) {
+    public void printStations(List<StationDto> stationDtos) {
         System.out.println(OutputMessage.STATIONS.getMessage());
         stationDtos.stream()
                 .forEach(dto -> System.out.println(String.format(InfoMessage.STATION.getMessage(), dto.getStationName())));
+        System.out.println();
+    }
+
+    public void printSuccessDeleteStation() {
+        System.out.println(InfoMessage.DELETE_STATION.getMessage());
         System.out.println();
     }
 }

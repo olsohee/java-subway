@@ -21,7 +21,7 @@ public class StationController {
             createStation();
         }
         if (command == DetailCommand.DELETE) {
-
+            deleteStation();
         }
         if (command == DetailCommand.READ) {
             readStations();
@@ -49,7 +49,17 @@ public class StationController {
         }
     }
 
+    private void deleteStation() {
+        try {
+            stationService.deleteStation(inputView.readDeleteStation());
+            outputView.printSuccessDeleteStation();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            deleteStation();
+        }
+    }
+
     private void readStations() {
-        outputView.printStaions(stationService.getStationDtos());
+        outputView.printStations(stationService.getStationDtos());
     }
 }
