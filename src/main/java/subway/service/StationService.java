@@ -2,11 +2,13 @@ package subway.service;
 
 import subway.domain.Line;
 import subway.domain.Station;
+import subway.dto.StationDto;
 import subway.repository.LineRepository;
 import subway.repository.StationRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StationService {
 
@@ -42,7 +44,7 @@ public class StationService {
         stations3.add(강남);
         stations3.add(양재);
         stations3.add(양재시민의숲);
-        
+
         LineRepository.addLine(new Line("2호선", stations1));
         LineRepository.addLine(new Line("3호선", stations2));
         LineRepository.addLine(new Line("신분당선", stations3));
@@ -50,5 +52,11 @@ public class StationService {
 
     public void createStation(String stationName) {
         StationRepository.addStation(new Station(stationName));
+    }
+
+    public List<StationDto> getStationDtos() {
+        return StationRepository.findAll().stream()
+                .map(station -> new StationDto(station.getName()))
+                .collect(Collectors.toList());
     }
 }

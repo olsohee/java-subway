@@ -24,7 +24,7 @@ public class StationController {
 
         }
         if (command == DetailCommand.READ) {
-
+            readStations();
         }
         if (command == DetailCommand.BACK) {
 
@@ -42,10 +42,14 @@ public class StationController {
     private void createStation() {
         try {
             stationService.createStation(inputView.readCreateStation());
-
+            outputView.printSuccessCreateStation();
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             createStation();
         }
+    }
+
+    private void readStations() {
+        outputView.printStaions(stationService.getStationDtos());
     }
 }

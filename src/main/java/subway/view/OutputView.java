@@ -1,6 +1,10 @@
 package subway.view;
 
+import subway.dto.StationDto;
+import subway.message.InfoMessage;
 import subway.message.OutputMessage;
+
+import java.util.List;
 
 public class OutputView {
 
@@ -26,6 +30,18 @@ public class OutputView {
 
     public void printStationFunction() {
         System.out.println(OutputMessage.STATION_FUNCTION.getMessage());
+        System.out.println();
+    }
+
+    public void printSuccessCreateStation() {
+        System.out.println(InfoMessage.CREATE_STATION.getMessage());
+        System.out.println();
+    }
+
+    public void printStaions(List<StationDto> stationDtos) {
+        System.out.println(OutputMessage.STATIONS.getMessage());
+        stationDtos.stream()
+                .forEach(dto -> System.out.println(String.format(InfoMessage.STATION.getMessage(), dto.getStationName())));
         System.out.println();
     }
 }

@@ -12,7 +12,8 @@ public enum OutputMessage {
             "1. 역 등록\n" +
             "2. 역 삭제\n" +
             "3. 역 조회\n" +
-            "B. 돌아가기")
+            "B. 돌아가기"),
+    STATIONS("## 역 목록")
     ;
 
     private final String message;
